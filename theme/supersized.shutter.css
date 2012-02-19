@@ -63,6 +63,7 @@
     position: absolute;
     right: 80px;
     width: 33%;
+    cursor: pointer;
 }
 
 #slidecounter {
