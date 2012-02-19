@@ -14,7 +14,7 @@
 
     <head>
 
-        <title>Supersized - Full Screen Background Slideshow jQuery Plugin</title>
+        <title>24h of MotorAuthority</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
         <link rel="stylesheet" href="css/supersized.css" type="text/css" media="screen" />
@@ -24,7 +24,7 @@
         <script type="text/javascript" src="js/jquery.easing.min.js"></script>
 
         <script type="text/javascript" src="js/supersized.3.2.6.js"></script>
-        <script type="text/javascript" src="theme/supersized.shutter.min.js"></script>
+        <script type="text/javascript" src="theme/supersized.shutter.js"></script>
 
         <script type="text/javascript">
             var galleryOptions = {
@@ -42,7 +42,7 @@
                     pause_hover:0,          // Pause slideshow on hover
                     keyboard_nav:1,         // Keyboard navigation on/off
                     performance:1,          // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
-                    image_protect:1,        // Disables image dragging and right click with Javascript
+                    image_protect:0,        // Disables image dragging and right click with Javascript
 
                     // Size & Position
                     min_width: 0,           // Min width allowed (in pixels)
@@ -64,15 +64,25 @@
                 };
 
             jQuery(function($){
-                $.getJSON('http://api.highgearmedia.com/v1/articles/list.json?sites=motorauthority&callback=?', function(data) {
+                $.getJSON('http://www.openapi.com/v1/articles/list.json?sites=motorauthority&callback=?', function(data) {
                     var items = [];
 
                     $.each(data, function(key, val) {
-                        items.push({
-                            image: val.image_m,
-                            title: val.title,
-                            thumb: val.image_t,
-                            url: val.link});
+                        var img = false;
+                        if (val.image_h != undefined){
+                            img = val.image_h;
+                        }
+                        else if (val.image_l != undefined){
+                            img = val.image_l;
+                        }
+                        if (img){
+                            items.push({
+                                image: img,
+                                title: val.title,
+                                desc: val.content.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ''),
+                                thumb: val.image_t,
+                                url: val.link});
+                        }
                     });
                     galleryOptions.slides = items;
                     $.supersized(galleryOptions);
@@ -110,25 +120,30 @@
 
         <!--Control Bar-->
         <div id="controls-wrapper" class="load-item">
+            <h1>24h of <a href="http://www.motorauthority.com">MotorAuthority</a></h1>
             <div id="controls">
 
                 <a id="play-button"><img id="pauseplay" src="img/pause.png"/></a>
 
-                <!--Slide counter-->
-                <div id="slidecounter">
-                    <span class="slidenumber"></span> / <span class="totalslides"></span>
-                </div>
-
-                <!--Slide captions displayed here-->
-                <div id="slidecaption"></div>
-
                 <!--Thumb Tray button-->
-                <a id="tray-button"><img id="tray-arrow" src="img/button-tray-up.png"/></a>
+                <a id="tray-button"><img id="tray-arrow" src="img/button-tray-down.png"/></a>
 
                 <!--Navigation-->
                 <ul id="slide-list"></ul>
 
             </div>
+        </div>
+        
+        <div id="slide-info-wrapper">
+            <!--Slide counter-->
+            <div id="slidecounter">
+                <span class="slidenumber"></span> / <span class="totalslides"></span>
+            </div>
+
+            <!--Slide captions displayed here-->
+            <div id="slidecaption"></div>
+            
+            <div id="slidedesc"></div>
         </div>
 
     </body>
