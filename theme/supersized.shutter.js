@@ -63,14 +63,12 @@
 			
             // Slide info Toggle
             $(vars.slide_info_container).toggle(function(){
-                console.log('up');
                 $(vars.slide_info_container).stop().animate({
                     bottom : 0, 
                     avoidTransforms : true
                 }, 300 );
                 return false;
             }, function() {
-                console.log('down');
                 $(vars.slide_info_container).stop().animate({
                     bottom : -$(vars.slide_info_container).height()+50, 
                     avoidTransforms : true
