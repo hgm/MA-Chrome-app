@@ -64,7 +64,10 @@
                 };
 
             jQuery(function($){
-                $.getJSON('http://www.openapi.com/v1/articles/list.json?sites=motorauthority&callback=?', function(data) {
+                var dt = new Date();
+                $.getJSON('http://www.openapi.com/v1/articles/list.json?sites=motorauthority&callback=?', 
+                {time: Math.round((dt.getTime()/1000-86400))+'-'},
+                function(data) {
                     var items = [];
 
                     $.each(data, function(key, val) {
@@ -86,8 +89,12 @@
                             });
                         }
                     });
-                    galleryOptions.slides = items;
-                    $.supersized(galleryOptions);
+                    if (items.length > 0){
+                        galleryOptions.slides = items;
+                        $.supersized(galleryOptions);
+                    } else {
+                        alert('Sorry, no new stories found...');
+                    }
                 });
             });
 
