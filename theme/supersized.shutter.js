@@ -156,11 +156,11 @@
             if(jQuery.support.opacity){
                 $(vars.prev_slide +','+vars.next_slide).mouseover(function() {
                     $(this).stop().animate({
-                        opacity:1
+                        opacity:0.9
                     },100);
                 }).mouseout(function(){
                     $(this).stop().animate({
-                        opacity:0.6
+                        opacity:0.4
                     },100);
                 });
             }
@@ -301,6 +301,22 @@
             if ($(vars.slide_desc).length){
                 (api.getField('desc')) ? $(vars.slide_desc).html(api.getField('desc')) : $(vars.slide_desc).html('');
             }
+            // Update slide date
+            if ($(vars.slide_date).length){
+                if (api.getField('date')){
+                    var time = new Date(),
+                    delta = Math.floor((time.getTime()/1000-api.getField('date'))/3600);
+                    if (delta > 48){
+                        time = new Date(api.getField('date') * 1000);
+                        $(vars.slide_date).html(time.toDateString());
+                    } else {
+                        $(vars.slide_date).html(delta+' hours ago');
+                    }
+                }
+                else {
+                    $(vars.slide_date).html('');
+                }
+            }
             // Update slide number
             if (vars.slide_current.length){
                 $(vars.slide_current).html(vars.current_slide + 1);
@@ -405,6 +421,7 @@
         slide_info_container		:	'#slide-info-wrapper',	// Slide info container
         slide_caption		:	'#slidecaption',	// Slide caption
         slide_desc		    :	'#slidedesc',// Slide description
+        slide_date		    :	'#slidedate',// Slide date
         slide_current		:	'.slidenumber',		// Current slide number
         slide_total			:	'.totalslides',		// Total Slides
         slide_list			:	'#slide-list',		// Slide jump list							

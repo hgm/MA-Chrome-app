@@ -39,7 +39,7 @@
     background: url(../img/ma-logo_s.png) no-repeat;
     text-indent: 10000px;
     width:160px;
-    height:18px;
+    height:20px;
     display: inline-block;
     vertical-align: middle;
 }
@@ -59,20 +59,27 @@
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
     bottom: -150px;
     color: white;
-    padding: 20px;
+    padding: 32px 20px 20px;
     position: absolute;
     right: 80px;
     width: 33%;
     cursor: pointer;
 }
 
-#slidecounter {
-    color:#ccc;
+#slidedate, #slidecounter {
+    color:#999;
     position:absolute;
     top:10px;
-    right:10px;
     font-size: 12px;
     font-style: italic;
+}
+
+#slidedate {
+    left:20px;
+}
+
+#slidecounter {
+    right:10px;
 }
 
 #slidecaption {
@@ -81,8 +88,13 @@
     color: #FFF;
     font-size: 22px;
     text-shadow: #000 1px 1px 2px;
-    margin: 0 20px 10px 0;
+    margin: 0 0 10px 0;
     line-height: 30px;
+    clear:both;
+}
+
+#slidedesc {
+    clear:both;
 }
 
 #navigation {
@@ -104,25 +116,26 @@
 
 #prevslide, #nextslide {
     position: absolute;
-    height: 43px;
-    width: 43px;
+    height: 65px;
+    width: 30px;
     top: 50%;
-    margin-top: -21px;
-    opacity: 0.6;
+    margin-top: -32px;
+    opacity: 0.4;
 }
 
 #prevslide {
-    left: 10px;
-    background: url('../img/back.png');
+    left: 0;
+    background: url("../img/forward-back.png") no-repeat scroll 0 0 transparent;
+    
 }
 
 #nextslide {
-    right: 10px;
-    background: url('../img/forward.png');
+    right: 0;
+    background: url("../img/forward-back.png") no-repeat scroll -30px 0 transparent;
 }
 
 #prevslide:active, #nextslide:active {
-    margin-top: -19px;
+    margin-top: -30px;
 }
 
 #prevslide:hover, #nextslide:hover {
@@ -180,16 +193,16 @@ ul#slide-list li a:hover {
     position: fixed;
     top: 42px;
     left: 0;
-    height: 8px;
+    height: 2px;
     width: 100%;
-    background: url('../img/progress-back.png') repeat-x;
+    background: rgba(128,128,128,0.3);
 }
 
 #progress-bar {
     position: relative;
-    height: 8px;
+    height: 2px;
     width: 100%;
-    background: url('../img/progress-bar.png') repeat-x;
+    background: #b22;
 }
 
 

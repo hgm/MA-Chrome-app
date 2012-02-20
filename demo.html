@@ -76,12 +76,16 @@
                             img = val.image_l;
                         }
                         if (img){
+                            var dt = new Date(val.date_created * 1000),
+                            now = new Date();
                             items.push({
                                 image: img,
+                                thumb: val.image_t,
                                 title: val.title,
                                 desc: val.content.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, ''),
-                                thumb: val.image_t,
-                                url: val.link});
+                                date: val.date_created,
+                                url: val.link
+                            });
                         }
                     });
                     galleryOptions.slides = items;
@@ -135,6 +139,7 @@
         </div>
         
         <div id="slide-info-wrapper">
+            <div id="slidedate"></div>
             <!--Slide counter-->
             <div id="slidecounter">
                 <span class="slidenumber"></span> / <span class="totalslides"></span>
