@@ -70,7 +70,8 @@
                 return false;
             }, function() {
                 $(vars.slide_info_container).stop().animate({
-                    bottom : -$(vars.slide_info_container).height()+50, 
+                    //bottom : -$(vars.slide_info_container).height()+50, 
+                    bottom : -$(vars.slide_info_container).height()+$(vars.slide_caption).height()-10,
                     avoidTransforms : true
                 }, 300 );
                 return false;
