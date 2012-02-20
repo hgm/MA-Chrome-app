@@ -47,6 +47,7 @@
                     top : 0, 
                     avoidTransforms : true
                 }, 300 );
+                $(vars.tray_button).removeClass('closed').addClass('opened');
                 if ($(vars.tray_arrow).attr('src')) $(vars.tray_arrow).attr("src", vars.image_path + "button-tray-up.png");
                 return false;
             }, function() {
@@ -54,6 +55,7 @@
                     top : -$(vars.thumb_tray).height(), 
                     avoidTransforms : true
                 }, 300 );
+                $(vars.tray_button).removeClass('opened').addClass('closed');
                 if ($(vars.tray_arrow).attr('src')) $(vars.tray_arrow).attr("src", vars.image_path + "button-tray-down.png");
                 return false;
             });
@@ -271,10 +273,12 @@
             if (state =='play'){
                 // If image, swap to pause
                 if ($(vars.play_button).attr('src')) $(vars.play_button).attr("src", vars.image_path + "pause.png");
+                $(vars.play_button).removeClass('play').addClass('pause');
                 if (api.options.progress_bar && !vars.is_paused) theme.progressBar();
             }else if (state == 'pause'){
                 // If image, swap to play
                 if ($(vars.play_button).attr('src')) $(vars.play_button).attr("src", vars.image_path + "play.png");
+                $(vars.play_button).removeClass('pause').addClass('play');
                 if (api.options.progress_bar && vars.is_paused)$(vars.progress_bar).stop().animate({
                     left : -$(window).width()
                     }, 0 );

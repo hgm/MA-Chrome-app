@@ -15,7 +15,7 @@
 ----------------------------*/
 #controls-wrapper {
     margin: 0 auto;
-    height: 42px;
+    height: 32px;
     width: 100%;
     top: 0px;
     left: 0;
@@ -27,12 +27,10 @@
 #controls-wrapper h1 {
     color: #FFFFFF;
     font-size: 18px;
-    left: 0;
-    line-height: 42px;
+    line-height: 32px;
     padding: 0 18px;
-    position: absolute;
-    width: 40%;
     font-style: italic;
+    float: left;
 }
 
 #controls-wrapper h1 a {
@@ -46,17 +44,19 @@
 
 #controls {
     overflow: hidden;
-    width:50%;
     height: 100%;
-    position: absolute;
     text-align: left;
     z-index: 5;
-    right:0;
+    float: left;
+    border-right: 1px solid black;
+}
+
+#controls .menu-button {
     border-left: 1px solid black;
 }
 
 #slide-info-wrapper {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+    background: url(../img/info-box-up.gif) no-repeat scroll center 10px rgba(0, 0, 0, 0.8);
     bottom: -150px;
     color: white;
     padding: 32px 20px 20px;
@@ -102,15 +102,23 @@
     margin: 0px 20px 0 0;
 }
 
-#play-button {
-    float: right;
-    margin-top: 1px;
-    border-left: 1px solid #333;
-    background: url('../img/bg-hover.png') repeat-x 0 44px;
+#pauseplay {
+    float: left;
+    display: block;
+    width:40px;
+    height:32px;
 }
 
-#play-button:hover {
-    background-position: 0 1px;
+#pauseplay.pause{
+    background: url('../img/play-pause.png') no-repeat 4px 0;
+}
+
+#pauseplay.play{
+    background: url('../img/play-pause.png') no-repeat 4px -32px;
+}
+
+#pauseplay:hover {
+    background-color: #400;
     cursor: pointer;
 }
 
@@ -135,7 +143,7 @@
 }
 
 #prevslide:active, #nextslide:active {
-    margin-top: -30px;
+    margin-top: -31px;
 }
 
 #prevslide:hover, #nextslide:hover {
@@ -143,6 +151,7 @@
 }
 
 ul#slide-list {
+    display:none;
     padding: 15px 0;
     float: right;
     position: absolute;
@@ -175,13 +184,21 @@ ul#slide-list li a:hover {
 
 #tray-button {
     float: left;
-    margin-top: 1px;
-    border-right: 1px solid #333;
-    background: url('../img/bg-hover.png') repeat-x 0 44px;
+    display: block;
+    width:40px;
+    height:32px;
+}
+
+#tray-button.closed {
+    background: url('../img/thumbs-tray-arrows.png') no-repeat 0 0px;
+}
+
+#tray-button.opened {
+    background: url('../img/thumbs-tray-arrows.png') no-repeat 0 -32px;
 }
 
 #tray-button:hover {
-    background-position: 0 1px;
+    background-color: #400;
     cursor: pointer;
 }
 
@@ -191,7 +208,7 @@ ul#slide-list li a:hover {
 #progress-back {
     z-index: 5;
     position: fixed;
-    top: 42px;
+    top: 32px;
     left: 0;
     height: 2px;
     width: 100%;
@@ -251,7 +268,7 @@ ul#slide-list li a:hover {
     top: 0;
     left: 0;
     background: rgba(0,0,0,0.5);
-    height: 111px;
+    height: 103px;
     width: 100%;
     overflow: hidden;
     text-align: center;
@@ -260,7 +277,7 @@ ul#slide-list li a:hover {
 #thumb-back, #thumb-forward {
     position: absolute;
     z-index: 5;
-    top: 42px;
+    top: 34px;
     height: 69px;
     width: 40px;
 }
@@ -277,22 +294,20 @@ ul#slide-list li a:hover {
 
 #thumb-back:hover, #thumb-forward:hover {
     cursor: pointer;
-    background-color: rgba(256,256,256, 0.3);
+    background-color: rgba(64,0,0, 0.5);
 }
 
 #thumb-back:hover {
-    border-right: 1px solid rgba(256,256,256, 0.2);
 }
 
 #thumb-forward:hover {
-    border-left: 1px solid rgba(256,256,256, 0.2);
 }
 
 ul#thumb-list {
     display: inline-block;
     list-style: none;
     position: relative;
-    top:46px;
+    top:38px;
     left: 0px;
     padding: 0 0px;
 }
