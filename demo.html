@@ -76,8 +76,6 @@
                             img = val.image_l;
                         }
                         if (img){
-                            var dt = new Date(val.date_created * 1000),
-                            now = new Date();
                             items.push({
                                 image: img,
                                 thumb: val.image_t,
@@ -126,11 +124,10 @@
         <div id="controls-wrapper" class="load-item">
             <h1>24h of <a href="http://www.motorauthority.com">MotorAuthority</a></h1>
             <div id="controls">
-
-                <a id="play-button"><img id="pauseplay" src="img/pause.png"/></a>
-
                 <!--Thumb Tray button-->
                 <a id="tray-button"><img id="tray-arrow" src="img/button-tray-down.png"/></a>
+                
+                <a id="play-button"><img id="pauseplay" src="img/pause.png"/></a>
 
                 <!--Navigation-->
                 <ul id="slide-list"></ul>
