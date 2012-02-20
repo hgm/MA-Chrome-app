@@ -105,20 +105,14 @@
 
     </head>
 
-    <style type="text/css">
-        ul#demo-block{ margin:0 15px 15px 15px; }
-        ul#demo-block li{ margin:0 0 10px 0; padding:10px; display:inline; float:left; clear:both; color:#aaa; background:url('img/bg-black.png'); font:11px Helvetica, Arial, sans-serif; }
-        ul#demo-block li a{ color:#eee; font-weight:bold; }
-    </style>
-
     <body>
         <!--Thumbnail Navigation-->
         <div id="prevthumb"></div>
         <div id="nextthumb"></div>
 
         <!--Arrow Navigation-->
-        <a id="prevslide" class="load-item"></a>
-        <a id="nextslide" class="load-item"></a>
+        <a id="prevslide" class="load-item" title="Prev story"></a>
+        <a id="nextslide" class="load-item" title="Next story"></a>
 
         <div id="thumb-tray" class="load-item">
             <div id="thumb-back"></div>
@@ -135,9 +129,9 @@
             <h1>3.5 Days of <a href="http://www.motorauthority.com">MotorAuthority</a></h1>
             <div id="controls">
                 <!--Thumb Tray button-->
-                <a id="tray-button"><img id="tray-arrow" src="img/button-tray-down.png"/></a>
+                <a id="tray-button" title="Thumbnails"><img id="tray-arrow" src="img/button-tray-down.png"/></a>
                 
-                <a id="play-button"><img id="pauseplay" src="img/pause.png"/></a>
+                <a id="play-button" title="Start slideshow"><img id="pauseplay" src="img/pause.png"/></a>
 
                 <!--Navigation-->
                 <ul id="slide-list"></ul>
