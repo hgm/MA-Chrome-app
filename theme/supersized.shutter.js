@@ -302,14 +302,7 @@
             // Update slide date
             if ($(vars.slide_date).length){
                 if (api.getField('date')){
-                    var time = new Date(),
-                    delta = Math.floor((time.getTime()/1000-api.getField('date'))/3600);
-                    if (delta > 48){
-                        time = new Date(api.getField('date') * 1000);
-                        $(vars.slide_date).html(time.toDateString());
-                    } else {
-                        $(vars.slide_date).html(delta+' hours ago');
-                    }
+                    $(vars.slide_date).html(theme.getDateString(api.getField('date')));
                 }
                 else {
                     $(vars.slide_date).html('');
@@ -396,9 +389,27 @@
                 }, 0 ).animate({
                 left:0
             }, api.options.slide_interval);
-        }
+        },
 	 	
-	 
+        /* format a time-stamp into a nice string:
+         * just now / 1 hour ago / 23 hours ago / 3 days ago / date
+         */
+	getDateString : function(ts){
+            var time = new Date(),
+            delta = Math.floor((time.getTime()/1000-ts)/3600);
+            if (delta == 0){
+                return 'just now';
+            } else if (delta == 1){
+                return '1 hour ago';
+            } else if(delta < 48){
+                return delta +' hours ago';
+            } else if (delta < 6*24){
+                return Math.floor(delta/24)+' days ago';
+            } else {
+                time = new Date(ts * 1000);
+                return time.toDateString();
+            }
+        }
     };
 	 
 	 
