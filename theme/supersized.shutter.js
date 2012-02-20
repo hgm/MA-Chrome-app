@@ -319,7 +319,7 @@
             if (vars.slide_current.length){
                 $(vars.slide_current).html(vars.current_slide + 1);
             }
-		    
+            
 		    
             // Highlight current thumbnail and adjust row position
             if (api.options.thumb_links){
@@ -371,10 +371,13 @@
                         }
                     }
                 }
-				
-				
             }
-		    
+              
+            //adjust info box location
+            $(vars.slide_info_container).css(
+                'bottom',
+                -$(vars.slide_info_container).height()+$(vars.slide_caption).height()-10
+            );
         },
 	 	
 	 	
