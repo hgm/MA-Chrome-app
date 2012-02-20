@@ -260,8 +260,8 @@ ul#slide-list li a:hover {
 #thumb-back, #thumb-forward {
     position: absolute;
     z-index: 5;
-    bottom: 42px;
-    height: 62px;
+    top: 42px;
+    height: 69px;
     width: 40px;
 }
 
