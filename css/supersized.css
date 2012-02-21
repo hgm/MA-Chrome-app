@@ -27,6 +27,16 @@ img {
     border: none;
 }
 
+a {
+    color: #0F94CB;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #59B5D4;
+    text-decoration: underline;
+}
+
 #supersized-loader {
     position: absolute;
     top: 50%;

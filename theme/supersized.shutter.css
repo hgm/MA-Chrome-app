@@ -93,8 +93,15 @@
     clear:both;
 }
 
-#slidedesc {
+.desc-wrapper {
     clear:both;
+}
+
+#slidedesc {
+}
+
+#readmore {
+    float:right;
 }
 
 #navigation {

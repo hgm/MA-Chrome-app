@@ -96,6 +96,7 @@
                     if (items.length > 0){
                         galleryOptions.slides = items;
                         $.supersized(galleryOptions);
+                        $('#readmore').click(function(){console.log('foo');});
                     } else {
                         alert('Sorry, no new stories found...');
                     }
@@ -151,7 +152,10 @@
             <!--Slide captions displayed here-->
             <div id="slidecaption"></div>
             
-            <div id="slidedesc"></div>
+            <div class="desc-wrapper">
+                <div id="slidedesc"></div>
+                <a id="readmore" target="_blank">continue &raquo;</a>
+            </div>
         </div>
 
     </body>

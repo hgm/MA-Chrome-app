@@ -42,12 +42,12 @@
                 }, 0 );
 			
             // Thumbnail Tray Toggle
-            $(vars.tray_button).toggle(function(){
+            $(vars.thumb_tray_button).toggle(function(){
                 $(vars.thumb_tray).stop().animate({
                     top : 0, 
                     avoidTransforms : true
                 }, 300 );
-                $(vars.tray_button).removeClass('closed').addClass('opened');
+                $(vars.thumb_tray_button).removeClass('closed').addClass('opened');
                 if ($(vars.tray_arrow).attr('src')) $(vars.tray_arrow).attr("src", vars.image_path + "button-tray-up.png");
                 return false;
             }, function() {
@@ -55,7 +55,7 @@
                     top : -$(vars.thumb_tray).height(), 
                     avoidTransforms : true
                 }, 300 );
-                $(vars.tray_button).removeClass('opened').addClass('closed');
+                $(vars.thumb_tray_button).removeClass('opened').addClass('closed');
                 if ($(vars.tray_arrow).attr('src')) $(vars.tray_arrow).attr("src", vars.image_path + "button-tray-down.png");
                 return false;
             });
@@ -302,7 +302,19 @@
             }
             // Update slide description
             if ($(vars.slide_desc).length){
-                (api.getField('desc')) ? $(vars.slide_desc).html(api.getField('desc')) : $(vars.slide_desc).html('');
+                if (api.getField('desc')){
+                    $(vars.slide_desc).html(api.getField('desc'));
+                } else {
+                    $(vars.slide_desc).html('');
+                }
+            }
+            // Update slide 'read more' URL
+            if ($(vars.slide_link).length){
+                if (api.getField('url')){
+                    $(vars.slide_link).attr('href', api.getField('url')).removeClass('nodisplay');
+                } else {
+                    $(vars.slide_link).attr('href', '').addClass('nodisplay');
+                }
             }
             // Update slide date
             if ($(vars.slide_date).length){
@@ -441,6 +453,7 @@
         slide_date		    :	'#slidedate',// Slide date
         slide_current		:	'.slidenumber',		// Current slide number
         slide_total			:	'.totalslides',		// Total Slides
+        slide_link                      :       '#readmore',            //read-more link
         slide_list			:	'#slide-list',		// Slide jump list							
 		
         thumb_tray			:	'#thumb-tray',		// Thumbnail tray
@@ -448,7 +461,7 @@
         thumb_forward		:	'#thumb-forward',	// Cycles forward through thumbnail list
         thumb_back			:	'#thumb-back',		// Cycles backwards through thumbnail list
         tray_arrow			:	'#tray-arrow',		// Thumbnail tray button arrow
-        tray_button			:	'#tray-button',		// Thumbnail tray button
+        thumb_tray_button			:	'#tray-button',		// Thumbnail tray button
 		
         progress_bar		:	'#progress-bar'		// Progress bar
 	 												
