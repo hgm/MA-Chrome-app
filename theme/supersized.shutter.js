@@ -391,10 +391,16 @@
             }
               
             //adjust info box location
-            $(vars.info_tray).css(
-                'bottom',
-                -$(vars.info_tray).height()+$(vars.slide_caption).height()-10
-            );
+            if ($(vars.info_tray_button).hasClass('closed')){
+                $(vars.info_tray).stop().animate({
+                    bottom : -$(vars.info_tray).height()+$(vars.slide_caption).height()-10,
+                    avoidTransforms : true
+                }, 300 );
+//                $(vars.info_tray).css(
+//                    'bottom',
+//                    -$(vars.info_tray).height()+$(vars.slide_caption).height()-10
+//                );
+            } 
         },
 	 	
 	 	
