@@ -14,20 +14,19 @@
 
     // Private Variables
 
-    var
-    _doc = null,
-    _win = null,
-    _docHeight = 0,
-    _winHeight = 0,
-    _winWidth = 0,
-    _t = null,
-    _event = null,
-    _target = null,
-    _escapedContent = '',
-    _title = '',
-    _caption = '',
-    _container = null,
-    _content = null;
+    var _doc = null,
+        _win = null,
+        _docHeight = 0,
+        _winHeight = 0,
+        _winWidth = 0,
+        _t = null,
+        _event = null,
+        _target = null,
+        _escapedContent = '',
+        _title = '',
+        _caption = '',
+        _container = null,
+        _content = null;
 
     // Public Methods
 
@@ -38,8 +37,7 @@
             var $this = jQuery(e);
             var triggerEvent = ($this.is('form')) ? 'submit': 'click';
 
-            $this
-            .bind(triggerEvent + '.simpledialog', function (event) {
+            $this.bind(triggerEvent + '.simpledialog', function (event) {
                 event.preventDefault();
 
                 _t = this;
@@ -152,17 +150,17 @@
             body += ' <div class="sd_footer">' + _caption + '</div>';
 
         var tmp = jQuery('<div />')
-        .addClass(_t.opts.containerClass)
-        .hide()
-        .css({
-            position: 'absolute',
-            height: 'auto'
-        })
-        .html(body)
-        .appendTo(document.body);
+            .addClass(_t.opts.containerClass)
+            .hide()
+            .css({
+                position: 'absolute',
+                height: 'auto'
+            })
+            .html(body)
+            .appendTo(document.body);
 
         var w = (_t.opts.width) ? parseInt(_t.opts.width) : tmp.width();
-        var h = (_t.opts.height) ? parseInt(_t.opts.height) : tmp.height();
+        var h = (_t.opts.height) ? parseInt(_t.opts.height) : 'auto';
         tmp.remove();
         var pos = _center(w, h);
 
@@ -180,10 +178,10 @@
             .bind('click.simpledialog', jQuery.simpleDialog.close);
 
             if (_t.opts.showCloseLabel) {
-                var sc = '<div id="sd_closelabel" class="' + _t.opts.closeLabelClass + '">' +
-                '<a href="#">' + _t.opts.closeLabel + '</a></div>';
+                var sc = '<a id="sd_closelabel" class="' + _t.opts.closeLabelClass + '" href="#">' +
+                _t.opts.closeLabel + '</a>';
                 _container.append(sc);
-                $('#sd_closelabel a').click(jQuery.simpleDialog.close);
+                $('#sd_closelabel').click(jQuery.simpleDialog.close);
             }
 
             if (jQuery.isFunction(_t.opts.open))
@@ -222,32 +220,31 @@
 
         // overlay
         jQuery('<div />')
-        .attr('id', _t.opts.overlayId)
-        .addClass(_t.opts.overlayClass)
-        .css({
-            position: 'absolute',
-            width: _winWidth,
-            height: _docHeight,
-            opacity: _t.opts.opacity,
-            zIndex: _t.opts.zIndex
-        })
-        .bind('click.simpledialog', jQuery.simpleDialog.close)
-        .appendTo(document.body);
+            .attr('id', _t.opts.overlayId)
+            .addClass(_t.opts.overlayClass)
+            .css({
+                position: 'absolute',
+                width: _winWidth,
+                height: _docHeight,
+                opacity: _t.opts.opacity,
+                zIndex: _t.opts.zIndex
+            })
+            .bind('click.simpledialog', jQuery.simpleDialog.close)
+            .appendTo(document.body);
 
         // container
         _container = jQuery('<div />')
-        .attr('id', _t.opts.containerId)
-        .addClass(_t.opts.loadingClass)
-        .addClass(_t.opts.containerClass)
-        .hide()
-        .appendTo(document.body);
+            .attr('id', _t.opts.containerId)
+            .addClass(_t.opts.loadingClass)
+            .addClass(_t.opts.containerClass)
+            .hide()
+            .appendTo(document.body);
 
         var w = _container.width();
         var h = _container.height();
         var pos = _center(w, h);
 
-        _container
-        .css({
+        _container.css({
             position: 'absolute',
             left: pos[0] + 'px',
             top: pos[1] + 'px',
