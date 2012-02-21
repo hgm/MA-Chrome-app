@@ -20,9 +20,11 @@
         <link rel="shortcut icon" href="/favicon.ico"/>
         <link rel="stylesheet" href="css/supersized.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="theme/supersized.shutter.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/jquery.simpledialog.0.1.css" type="text/css" media="screen" />
 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+        <script type="text/javascript" src="js/jquery.simpledialog.0.1.js"></script>
 
         <script type="text/javascript" src="js/supersized.3.2.6.js"></script>
         <script type="text/javascript" src="theme/supersized.shutter.js"></script>
@@ -96,7 +98,10 @@
                     if (items.length > 0){
                         galleryOptions.slides = items;
                         $.supersized(galleryOptions);
-                        $('#readmore').click(function(){console.log('foo');});
+                        $('#about-button').simpleDialog({
+                            width: 500,
+                            height: 300
+                        });
                     } else {
                         alert('Sorry, no new stories found...');
                     }
@@ -130,6 +135,8 @@
         <div id="controls-wrapper" class="load-item">
             <h1>3&frac12; Days of <a href="http://www.motorauthority.com">MotorAuthority</a></h1>
             <div id="controls">
+                <a href="about.html" id="about-button" class="menu-button" title="About">?</a>
+                
                 <!--Thumb Tray button-->
                 <a id="tray-button" class="closed menu-button" title="Thumbnails">
                 </a>

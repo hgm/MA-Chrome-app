@@ -37,6 +37,10 @@ a:hover {
     text-decoration: underline;
 }
 
+h2 {
+    margin-bottom:10px;
+}
+
 #supersized-loader {
     position: absolute;
     top: 50%;
