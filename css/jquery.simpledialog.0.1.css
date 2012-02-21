@@ -29,7 +29,7 @@
     background-color: #222;
 }
 .sd_loading{
-    background: url('progress.gif') center no-repeat;
+    background: url('../img/progress.gif') center no-repeat;
     background-color: #fff;
     height: 60px;
     width: 60px;
@@ -40,10 +40,11 @@
     height:22px;
     line-height:22px;
     top:0;
-    left:0;
+    right:0;
     padding:5px;
     text-align:center;
     background-color:#ccc;
+    opacity: 0.8;
 }
 .sd_closelabel a {
     text-decoration:none;
