@@ -64,19 +64,21 @@
             $(vars.thumb_list).width($('> li', vars.thumb_list).length * $('> li', vars.thumb_list).outerWidth(true));	//Adjust to true width of thumb markers
 			
             // Slide info Toggle
-            $(vars.slide_info_container).toggle(function(){
-                $(vars.slide_info_container).stop().animate({
+            $(vars.info_tray_button).toggle(function(e){
+                $(vars.info_tray).stop().animate({
                     bottom : 0, 
                     avoidTransforms : true
                 }, 300 );
-                return false;
-            }, function() {
-                $(vars.slide_info_container).stop().animate({
-                    //bottom : -$(vars.slide_info_container).height()+50, 
-                    bottom : -$(vars.slide_info_container).height()+$(vars.slide_caption).height()-10,
+                $(vars.info_tray_button).removeClass('closed').addClass('opened');
+                e.preventDefault();
+            }, function(e) {
+                $(vars.info_tray).stop().animate({
+                    //bottom : -$(vars.info_tray).height()+50, 
+                    bottom : -$(vars.info_tray).height()+$(vars.slide_caption).height()-10,
                     avoidTransforms : true
                 }, 300 );
-                return false;
+                $(vars.info_tray_button).removeClass('opened').addClass('closed');
+                e.preventDefault();
             });
             
             // Display total slides
@@ -384,9 +386,9 @@
             }
               
             //adjust info box location
-            $(vars.slide_info_container).css(
+            $(vars.info_tray).css(
                 'bottom',
-                -$(vars.slide_info_container).height()+$(vars.slide_caption).height()-10
+                -$(vars.info_tray).height()+$(vars.slide_caption).height()-10
             );
         },
 	 	
@@ -447,7 +449,8 @@
         next_thumb			:	'#nextthumb',		// Next slide thumb button
         prev_thumb			:	'#prevthumb',		// Prev slide thumb button
 		
-        slide_info_container		:	'#slide-info-wrapper',	// Slide info container
+        info_tray		:	'#slide-info-wrapper',	// Slide info container
+        info_tray_button        :       '#info-tray-button',    // Slide info tray button
         slide_caption		:	'#slidecaption',	// Slide caption
         slide_desc		    :	'#slidedesc',// Slide description
         slide_date		    :	'#slidedate',// Slide date
