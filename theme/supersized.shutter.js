@@ -252,8 +252,13 @@
 					
                 }
             });	
-			
-								
+		
+            //Hide loading animation
+            if (vars.init_loader){
+                $(vars.init_loader).fadeOut('slow', function(){
+                    $(vars.init_loader).remove();
+                });
+            }
         },
 	 	
 	 	
@@ -438,11 +443,12 @@
 	 	
         // Internal Variables
         progress_delay		:	false,				// Delay after resize before resuming slideshow
-        thumb_page 			: 	false,				// Thumbnail page
+        thumb_page 			: 	false,                  // Thumbnail page
         thumb_interval 		: 	false,				// Thumbnail interval
-        image_path			:	'img/',				// Default image path
+        image_path			:	'img/',                 // Default image path
 													
-        // General Elements							
+        // General Elements
+        init_loader                     :       '#init-loader',         // initial loader overlay (splash screen)
         play_button			:	'#pauseplay',		// Play/Pause button
         next_slide			:	'#nextslide',		// Next slide button
         prev_slide			:	'#prevslide',		// Prev slide button
