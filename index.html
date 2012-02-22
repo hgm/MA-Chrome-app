@@ -68,7 +68,7 @@
 
             jQuery(function($){
                 var dt = new Date();
-                $.getJSON('http://apibeta.highgearmedia.com/v1/articles/list.json?sites=motorauthority&callback=?', 
+                $.getJSON('http://api.highgearmedia.com/v1/articles/list.json?sites=motorauthority&callback=?', 
                 {
                     time: Math.round((dt.getTime()/1000-86400*3.5))+'-' //3.5 days
                    ,count: 50
