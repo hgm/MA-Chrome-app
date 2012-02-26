@@ -1,0 +1,14 @@
+{
+  "name": "MotorAuthority in Pictures",
+  "description": "Latest stories from MotorAuthority in beautiful pictures",
+  "version": "0.0.0.1",
+  "app": {
+    "launch": {
+      "local_path": "index.html"
+    }
+  },
+  "icons": {
+    "16": "img/icon_16.png",
+    "128": "img/icon_128.png"
+  }
+}
