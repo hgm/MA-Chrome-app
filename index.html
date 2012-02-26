@@ -14,7 +14,7 @@
 
     <head>
 
-        <title>3&frac12; Days of MotorAuthority</title>
+        <title>MotorAuthority in Pictures</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
         <link rel="shortcut icon" href="favicon.ico"/>
@@ -32,58 +32,72 @@
         <script type="text/javascript">
             var galleryOptions = {
 
-                    // Functionality
-                    slideshow:1,            // Slideshow on/off
-                    autoplay:0,             // Slideshow starts playing automatically
-                    start_slide:1,          // Start slide (0 is random)
-                    stop_loop:0,            // Pauses slideshow on last slide
-                    random:0,               // Randomize slide order (Ignores start slide)
-                    slide_interval:5000,    // Length between transitions
-                    transition:1,           // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
-                    transition_speed:1000,  // Speed of transition
-                    new_window:1,           // Image links open in new window/tab
-                    pause_hover:0,          // Pause slideshow on hover
-                    keyboard_nav:1,         // Keyboard navigation on/off
-                    performance:1,          // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
-                    image_protect:0,        // Disables image dragging and right click with Javascript
+                // Functionality
+                slideshow:1,            // Slideshow on/off
+                autoplay:0,             // Slideshow starts playing automatically
+                start_slide:1,          // Start slide (0 is random)
+                stop_loop:0,            // Pauses slideshow on last slide
+                random:0,               // Randomize slide order (Ignores start slide)
+                slide_interval:5000,    // Length between transitions
+                transition:1,           // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+                transition_speed:1000,  // Speed of transition
+                new_window:1,           // Image links open in new window/tab
+                pause_hover:0,          // Pause slideshow on hover
+                keyboard_nav:1,         // Keyboard navigation on/off
+                performance:1,          // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed // (Only works for Firefox/IE, not Webkit)
+                image_protect:0,        // Disables image dragging and right click with Javascript
 
-                    // Size & Position
-                    min_width: 0,           // Min width allowed (in pixels)
-                    min_height: 0,          // Min height allowed (in pixels)
-                    vertical_center: 1,     // Vertically center background
-                    horizontal_center: 1,   // Horizontally center background
-                    fit_always:	0,          // Image will never exceed browser width or height (Ignores min. dimensions)
-                    fit_portrait: 1,        // Portrait images will not exceed browser height
-                    fit_landscape : 0,      // Landscape images will not exceed browser width
+                // Size & Position
+                min_width: 0,           // Min width allowed (in pixels)
+                min_height: 0,          // Min height allowed (in pixels)
+                vertical_center: 1,     // Vertically center background
+                horizontal_center: 1,   // Horizontally center background
+                fit_always:	0,          // Image will never exceed browser width or height (Ignores min. dimensions)
+                fit_portrait: 1,        // Portrait images will not exceed browser height
+                fit_landscape : 0,      // Landscape images will not exceed browser width
 
-                    // Components
-                    slide_links : 'blank',      // Individual links for each slide (Options: false, 'num', 'name', 'blank')
-                    thumb_links : 1,            // Individual thumb links for each slide
-                    thumbnail_navigation : 0,   // Thumbnail navigation
-                    slides : [],                  // Slideshow Images
-                    // Theme Options
-                    progress_bar : 1,   // Timer for each slide
-                    mouse_scrub : 0
-                };
+                // Components
+                slide_links : 'blank',      // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+                thumb_links : 1,            // Individual thumb links for each slide
+                thumbnail_navigation : 0,   // Thumbnail navigation
+                slides : [],                  // Slideshow Images
+                // Theme Options
+                progress_bar : 1,   // Timer for each slide
+                mouse_scrub : 0
+            };
 
             jQuery(function($){
                 var dt = new Date();
+                var imgSizes=['s','m','l','h'], //all size codes
+                    winWidth = $(window).width();
+                
                 $.getJSON('http://api.highgearmedia.com/v1/articles/list.json?sites=motorauthority&callback=?', 
                 {
                     time: Math.round((dt.getTime()/1000-86400*3.5))+'-' //3.5 days
-                   ,count: 50
+                    ,count: 50
                 }, 
                 function(data) {
                     var items = [];
 
                     $.each(data, function(key, val) {
                         var img = false;
-                        if (val.image_h != undefined){
-                            img = val.image_h;
+                        //pick an image size
+                        for(var i in imgSizes){
+                            var s = imgSizes[i];
+                            if(val['image_'+s] != undefined && val['image_'+s+'_dims'] != undefined){
+                                var width = val['image_'+s+'_dims'].split('x', 1)[0];
+                                //take this size if it's wider than the minimum
+                                if (width > winWidth*0.6){
+                                    img = val['image_'+s];
+                                    //if we have a size that is larger than the 
+                                    //window, we take it and stop.
+                                    if ((width-winWidth) > 0){
+                                        break;
+                                    }
+                                }
+                            }
                         }
-                        else if (val.image_l != undefined){
-                            img = val.image_l;
-                        }
+
                         if (img){
                             items.push({
                                 image: img,
@@ -135,14 +149,14 @@
 
         <!--Control Bar-->
         <div id="controls-wrapper" class="load-item">
-            <h1>3&frac12; Days of <a href="http://www.motorauthority.com">MotorAuthority</a></h1>
+            <h1><a href="http://www.motorauthority.com">MotorAuthority</a> in Pictures</h1>
             <div id="controls">
                 <a href="about.html" id="about-button" class="menu-button" title="About">?</a>
-                
+
                 <!--Thumb Tray button-->
                 <a id="tray-button" class="closed menu-button" title="Thumbnails">
                 </a>
-                
+
                 <a id="pauseplay" class="play menu-button" title="Start slideshow"></a>
 
                 <!--Navigation-->
@@ -150,7 +164,7 @@
 
             </div>
         </div>
-        
+
         <div id="slide-info-wrapper">
             <a id="info-tray-button" class="closed" title="More details"></a>
             <div id="slidedate"></div>
@@ -161,7 +175,7 @@
 
             <!--Slide captions displayed here-->
             <div id="slidecaption"></div>
-            
+
             <div class="desc-wrapper">
                 <div id="slidedesc"></div>
                 <a id="readmore" target="_blank">continue &raquo;</a>
