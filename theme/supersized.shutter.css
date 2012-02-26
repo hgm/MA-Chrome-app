@@ -101,18 +101,18 @@
     top:0;
     left:0;
     width:100%;
-    height:30px;
+    height:60px;
     background: url(../img/info-box-button-sprite.gif) no-repeat scroll center 0 transparent;
     cursor: pointer;
 }
 #info-tray-button.closed:hover {
-    background: url(../img/info-box-button-sprite.gif) no-repeat scroll center -30px transparent;
-}
-#info-tray-button.opened {
     background: url(../img/info-box-button-sprite.gif) no-repeat scroll center -60px transparent;
 }
+#info-tray-button.opened {
+    background: url(../img/info-box-button-sprite.gif) no-repeat scroll center -120px transparent;
+}
 #info-tray-button.opened:hover {
-    background: url(../img/info-box-button-sprite.gif) no-repeat scroll center -90px transparent;
+    background: url(../img/info-box-button-sprite.gif) no-repeat scroll center -180px transparent;
 }
 
 #slidedate, #slidecounter {
