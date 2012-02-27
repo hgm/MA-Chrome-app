@@ -426,15 +426,17 @@
          */
 	getDateString : function(ts){
             var time = new Date(),
-            delta = Math.floor((time.getTime()/1000-ts)/3600);
-            if (delta == 0){
+            delta = Math.floor((time.getTime()/1000-ts)/60); //time since publish in minutes
+            if (delta < 5){
                 return 'just now';
-            } else if (delta == 1){
+            } else if (delta < 60){
+                return delta +' minutes ago';
+            } else if(delta < 90){
                 return '1 hour ago';
-            } else if(delta < 48){
-                return delta +' hours ago';
-            } else if (delta < 6*24){
-                return Math.floor(delta/24)+' days ago';
+            } else if(delta < 2880){ //60*24*2 = 48 hours
+                return Math.floor(delta/60) +' hours ago';
+            } else if (delta < 8640){ //60*24*6 = 6 days
+                return Math.floor(delta/1440)+' days ago';
             } else {
                 time = new Date(ts * 1000);
                 return time.toDateString();
