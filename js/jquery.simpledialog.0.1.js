@@ -144,7 +144,7 @@
         if (_title != '')
             body += '<div class="sd_header">' + _title + '</div>';
 
-        body += '<div class="sd_content">' + content + '</div>';
+        body += '<div class="sd_content-wrapper"><div class="sd_content">' + content + '</div></div>';
 
         if (_caption != '' && typeof _caption != 'undefined')
             body += ' <div class="sd_footer">' + _caption + '</div>';
