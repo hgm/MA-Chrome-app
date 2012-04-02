@@ -110,6 +110,14 @@
                         }
                     });
                     if (items.length > 0){
+                        items.push({
+                            image: 'img/placeholder.jpg',
+                            thumb: 'img/placeholder_t.gif',
+                            title: 'There is much more!',
+                            desc: 'Read more stories, see more photos and watch videos on MotorAuthority.com',
+                            date: '',
+                            url: 'http://www.motorauthority.com?ref=chrome-app'
+                        });
                         galleryOptions.slides = items;
                         $.supersized(galleryOptions);
                         $('#about-button').simpleDialog({
